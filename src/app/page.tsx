@@ -12,6 +12,7 @@ import {
 import { Layout, Menu, theme, MenuProps } from "antd";
 import HomeContent from "./components/HomeContent";
 import VideoPage from "./components/VideoPage";
+import BaseStationList from "./base-stations/page";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -38,7 +39,7 @@ const menuConfig: MenuItemConfig[] = [
       {
         label: "视频列表",
         icon: <OrderedListOutlined />,
-        content: <HomeContent />,
+        content: <BaseStationList />,
       },
       {
         label: "上传记录",

@@ -11,12 +11,15 @@
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@ant-design/icons-svg": "^4.4.2",
+    "@ant-design/pro-components": "^2.8.10",
     "@icedesign/icon": "^0.1.1",
+    "@prisma/client": "^6.18.0",
     "antd": "^5.27.6",
     "next": "16.0.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -26,6 +29,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
+    "prisma": "^6.18.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// 基站实体（对应数据库表：device_base_station）
+/// 支持绑定桌牌、重启、搜索桌牌（基于WebSocket）
+model BaseStation {
+  id             Int        @id @default(autoincrement())
+  stationCode    String     @unique
+  stationName    String
+  ipAddress      String
+  port           Int?
+  bindStatus     Int        @default(0)
+  status         Int        @default(0)
+  lastOnlineTime DateTime?
+  createTime     DateTime   @default(now())
+  updateTime     DateTime   @default(now()) @updatedAt
+  remark         String?
+  attributes     String?
+  isDeleted      Boolean    @default(false)
+  siteId         Int?
+  site           Site?      @relation(fields: [siteId], references: [id])
+  deskSigns      DeskSign[]
+
+  @@map("device_base_station")
+}
+
+/// 桌牌实体（对应数据库表：device_desk_sign）
+/// 支持绑定基站/场地、功耗切换、预存清屏、导入导出
+model DeskSign {
+  id              Int          @id @default(autoincrement())
+  signCode        String       @unique
+  signName        String
+  baseStationId   Int?
+  status          Int          @default(0)
+  powerMode       Int          @default(1)
+  clearStatus     Int          @default(0)
+  lastContentTime DateTime?
+  createTime      DateTime     @default(now())
+  updateTime      DateTime     @default(now()) @updatedAt
+  remark          String?
+  attributes      String?
+  isDeleted       Boolean      @default(false)
+  siteId          Int?
+  site            Site?        @relation(fields: [siteId], references: [id])
+  baseStation     BaseStation? @relation(fields: [baseStationId], references: [id])
+
+  @@map("device_desk_sign")
+}
+
+/// 场地实体（对应数据库表：sys_site）
+/// 支持管理基站/桌牌、标记会议场地、查看详情
+model Site {
+  id           Int           @id @default(autoincrement())
+  siteCode     String        @unique
+  siteName     String
+  siteType     Int
+  status       Int           @default(1)
+  createTime   DateTime      @default(now())
+  updateTime   DateTime      @default(now()) @updatedAt
+  remark       String?
+  isDeleted    Boolean       @default(false)
+  baseStations BaseStation[]
+  deskSigns    DeskSign[]
+
+  @@map("sys_site")
+}
