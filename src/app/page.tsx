@@ -32,12 +32,12 @@ const menuConfig: MenuItemConfig[] = [
     content: <HomeContent />,
   },
   {
-    label: "视频管理",
+    label: "设备管理",
     icon: <VideoCameraOutlined />,
     content: <VideoPage />,
     children: [
       {
-        label: "视频列表",
+        label: "基站管理",
         icon: <OrderedListOutlined />,
         content: <BaseStationList />,
       },
