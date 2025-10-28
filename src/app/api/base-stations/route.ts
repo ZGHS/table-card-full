@@ -175,7 +175,8 @@ export async function DELETE(request: Request) {
       data: { isDeleted: true, updateTime: new Date() },
     });
 
-    return NextResponse.json(null, { status: 204 });
+    // 对于204 No Content状态码，不能提供响应体
+    return new Response(null, { status: 204 });
   } catch (error) {
     console.error("DELETE 基站错误:", error);
     return NextResponse.json({ error: "删除基站失败" }, { status: 500 });

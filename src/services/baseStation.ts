@@ -100,7 +100,11 @@ export async function updateBaseStation(
   data: Partial<Omit<BaseStation, 'id' | 'createTime' | 'updateTime'>>
 ): Promise<BaseStation> {
   try {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    // 使用查询参数传递ID，与服务器端API保持一致
+    const url = new URL(API_BASE_URL, window.location.origin);
+    url.searchParams.append('id', String(id));
+    
+    const response = await fetch(url.toString(), {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -130,7 +134,11 @@ export async function updateBaseStation(
  */
 export async function deleteBaseStation(id: number): Promise<boolean> {
   try {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    // 使用查询参数传递ID，与服务器端API保持一致
+    const url = new URL(API_BASE_URL, window.location.origin);
+    url.searchParams.append('id', String(id));
+    
+    const response = await fetch(url.toString(), {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
