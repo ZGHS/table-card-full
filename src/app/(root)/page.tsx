@@ -10,9 +10,9 @@ import {
   HistoryOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme, MenuProps } from "antd";
-import HomeContent from "./components/HomeContent";
-import VideoPage from "./components/VideoPage";
-import BaseStationList from "./base-stations/page";
+import HomeContent from "../components/HomeContent";
+import VideoPage from "../components/VideoPage";
+import BaseStationList from "../base-stations/page";
 
 const { Header, Content, Footer, Sider } = Layout;
 
