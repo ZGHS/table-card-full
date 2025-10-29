@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 // 引入 Ant Design 核心样式和配置组件
 import "antd/dist/reset.css"; // Ant Design 全局样式重置（必须导入）
 import { ConfigProvider } from "antd";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "企业管理系统", // 改为默认标题为业务相关名称
@@ -29,7 +20,7 @@ export default function RootLayout({
   return (
       <html lang="zh-CN">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`antialiased`}
         >
           <header className="flex justify-end items-center p-4 gap-4 h-16">
           </header>
