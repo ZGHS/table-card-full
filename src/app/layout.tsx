@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 // 引入 Ant Design 核心样式和配置组件
 import "antd/dist/reset.css"; // Ant Design 全局样式重置（必须导入）
@@ -48,6 +50,8 @@ export default function RootLayout({
             }}
           >
             {children}{" "}
+            <Analytics />
+            <SpeedInsights />
             {/* 所有子组件（包括后台布局）都会继承 Ant Design 配置 */}
           </ConfigProvider>
         </body>
