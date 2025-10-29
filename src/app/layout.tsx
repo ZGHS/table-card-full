@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 // 引入 Ant Design 核心样式和配置组件
