@@ -14,7 +14,9 @@ import HomeContent from "../../components/HomeContent";
 import VideoPage from "../../components/VideoPage";
 import BaseStationList from "../base-stations/page";
 import DeskSignList from "../desk-sign/page";
+import { Typography } from 'antd';
 
+const { Title } = Typography;
 import Template from "../template/page";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -148,8 +150,15 @@ export default function HomePage() {
             margin: 16,
             background: "#1890ff",
             borderRadius: 4,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
-        />
+        >
+          <Title level={5} style={{ color: "#fff", margin: 0 }}>
+            电子桌牌管理系统
+          </Title>
+        </div>
         <Menu
           theme="dark"
           mode="inline"

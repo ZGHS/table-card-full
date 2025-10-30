@@ -8,8 +8,8 @@ import { ConfigProvider } from "antd";
 
 
 export const metadata: Metadata = {
-  title: "企业管理系统", // 改为默认标题为业务相关名称
-  description: "基于 Next.js + Ant Design 构建的企业级管理系统",
+  title: "电子桌牌管理系统", // 改为默认标题为业务相关名称
+  description: "基于 Next.js + Ant Design 构建的电子桌牌管理系统",
 };
 
 export default function RootLayout({
@@ -22,8 +22,6 @@ export default function RootLayout({
         <body
           className={`antialiased`}
         >
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-          </header>
           {/* Ant Design 全局配置：主题、组件前缀等 */}
           <ConfigProvider
             theme={{
