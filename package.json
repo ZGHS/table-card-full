@@ -13,6 +13,7 @@
     "@ant-design/icons": "^6.1.0",
     "@ant-design/icons-svg": "^4.4.2",
     "@ant-design/pro-components": "^2.8.10",
+    "@huggingface/inference": "^4.13.0",
     "@icedesign/icon": "^0.1.1",
     "@prisma/client": "^6.18.0",
     "@vercel/analytics": "^1.5.0",

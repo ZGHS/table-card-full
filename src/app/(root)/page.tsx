@@ -10,9 +10,12 @@ import {
   HistoryOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme, MenuProps } from "antd";
-import HomeContent from "../components/HomeContent";
-import VideoPage from "../components/VideoPage";
+import HomeContent from "../../components/HomeContent";
+import VideoPage from "../../components/VideoPage";
 import BaseStationList from "../base-stations/page";
+import DeskSignList from "../desk-sign/page";
+
+import Template from "../template/page";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -42,16 +45,28 @@ const menuConfig: MenuItemConfig[] = [
         content: <BaseStationList />,
       },
       {
-        label: "上传记录",
+        label: "桌牌管理",
         icon: <HistoryOutlined />,
-        content: <div>上传记录内容</div>,
+        content: <DeskSignList />,
       },
     ],
   },
   {
-    label: "文件上传",
+    label: "模版管理",
     icon: <UploadOutlined />,
     content: <VideoPage />,
+     children: [
+      {
+        label: "自定义模板",
+        icon: <OrderedListOutlined />,
+        content: <Template />,
+      },
+      {
+        label: "公共模板",
+        icon: <HistoryOutlined />,
+        content: <DeskSignList />,
+      },
+    ],
   },
   {
     label: "首页",
