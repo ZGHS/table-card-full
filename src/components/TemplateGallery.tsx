@@ -3,21 +3,18 @@ import { Card, Tabs, Row, Col, Typography, Space, Divider, Button } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
-const { TabPane } = Tabs;
 
 // 模板数据
 const TEMPLATES = {
-  '名片背景': [
-    { id: 1, prompt: '商务名片背景，灰色渐变，底部细线条装饰', preview: '/template1.jpg' },
-    { id: 2, prompt: '简约名片背景，浅蓝色，左上角留白', preview: '/template2.jpg' },
-  ],
-  '图标设计': [
-    { id: 3, prompt: '200x200px圆形图标，白色背景，黑色线条', preview: '/template3.jpg' },
-    { id: 4, prompt: '方形logo，渐变色，极简风格', preview: '/template4.jpg' },
-  ],
   '简约风格': [
-    { id: 5, prompt: '纯白背景，单一线条勾勒的物体', preview: '/template5.jpg' },
-    { id: 6, prompt: '低饱和度配色，几何图形组合', preview: '/template6.jpg' },
+      { id: 1, prompt: '商务名片背景，灰色渐变，底部细线条装饰', preview: '/template1.png' },
+    { id: 2, prompt: '简约名片背景，浅蓝色，左上角留白', preview: '/template2.png' },
+    { id: 3, prompt: '200x200px圆形图标，白色背景，黑色线条', preview: '/template3.png' },
+    { id: 4, prompt: '方形logo，渐变色，极简风格', preview: '/template4.png' },
+  ],
+  '艺术风格': [
+    { id: 5, prompt: '纯白背景，单一线条勾勒的物体', preview: '/template5.png' },
+    { id: 6, prompt: '低饱和度配色，几何图形组合', preview: '/template6.png' },
   ]
 };
 
@@ -26,7 +23,7 @@ interface TemplateGalleryProps {
 }
 
 export default function TemplateGallery({ onSelectTemplate }: TemplateGalleryProps) {
-  const [activeKey, setActiveKey] = useState('名片背景');
+  const [activeKey, setActiveKey] = useState(Object.keys(TEMPLATES)[0]);
 
   // 刷新模板（模拟）
   const handleRefresh = () => {
@@ -49,11 +46,11 @@ export default function TemplateGallery({ onSelectTemplate }: TemplateGalleryPro
         activeKey={activeKey} 
         onChange={setActiveKey}
         style={{ marginBottom: 16 }}
-      >
-        {Object.keys(TEMPLATES).map((key) => (
-          <TabPane tab={key} key={key} />
-        ))}
-      </Tabs>
+        items={Object.keys(TEMPLATES).map((key) => ({
+          key,
+          label: key,
+        }))}
+      />
 
       {/* 模板卡片列表 */}
       <Row gutter={[16, 16]}>
@@ -83,7 +80,7 @@ export default function TemplateGallery({ onSelectTemplate }: TemplateGalleryPro
             >
               <Card.Meta 
                 description={
-                  <Text ellipsis={{ rows: 2, expandable: true, symbol: '显示全部' }}>
+                  <Text ellipsis>
                     {template.prompt}
                   </Text>
                 } 

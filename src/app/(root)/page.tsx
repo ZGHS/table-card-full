@@ -30,8 +30,8 @@ interface MenuItemConfig {
 // 集中式菜单配置
 const menuConfig: MenuItemConfig[] = [
   {
-    label: "用户中心",
-    icon: <UserOutlined />,
+    label: "首页",
+    icon: <HomeOutlined />,
     content: <HomeContent />,
   },
   {
@@ -69,8 +69,8 @@ const menuConfig: MenuItemConfig[] = [
     ],
   },
   {
-    label: "首页",
-    icon: <HomeOutlined />,
+    label: "用户中心",
+    icon: <UserOutlined />,
     content: <HomeContent />,
   },
 ];

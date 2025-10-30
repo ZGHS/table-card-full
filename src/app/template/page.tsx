@@ -1,21 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { Layout, Button, Space } from 'antd';
+import { Space } from 'antd';
 import ImageGenerator from '../../components/ImageGenerator';
 import ResultDisplay from '../../components/ResultDisplay';
 import TemplateGallery from '../../components/TemplateGallery';
 import PromptTips from '../../components/PromptTips';
 
-const { Header, Content, Footer } = Layout;
-
-export default function Template() {
+export default function ImageGeneratorPage() {
   // 状态管理
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [currentPrompt, setCurrentPrompt] = useState('');
 
-  // 打开生成对话框
+  // 打开生成对话框（支持从模板传入提示词）
   const handleOpenModal = (prompt?: string) => {
     if (prompt) setCurrentPrompt(prompt);
     setIsModalOpen(true);
@@ -28,50 +26,73 @@ export default function Template() {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#f5f5f5' }}>
-      {/* 顶部区域 */}
-      <Header style={{ background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1 style={{ margin: 0, color: '#165DFF' }}>AI 图片生成器</h1>
-          <Button 
-            type="primary" 
-            size="large" 
-            onClick={() => handleOpenModal()}
-            style={{ borderRadius: 8 }}
-          >
-            开始生成
-          </Button>
-        </div>
-      </Header>
+    <div style={{ 
+      maxWidth: 1200, 
+      margin: '0 auto', 
+      padding: '24px', 
+      background: '#fff', 
+      borderRadius: 8, 
+      boxShadow: '0 1px 3px rgba(0,0,0,0.05)' 
+    }}>
+      {/* 页面标题与生成入口 */}
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: 24, 
+        paddingBottom: 16, 
+        borderBottom: '1px solid #f0f0f0' 
+      }}>
+        <button 
+          onClick={() => handleOpenModal()}
+          style={{ 
+            padding: '8px 16px', 
+            backgroundColor: '#165DFF', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: 4, 
+            cursor: 'pointer',
+            fontSize: 14
+          }}
+        >
+          开始生成图片
+        </button>
+      </div>
 
-      {/* 中部内容区 */}
-      <Content style={{ maxWidth: 1200, margin: '24px auto', width: '100%', padding: '0 24px' }}>
-        <div style={{ background: 'white', borderRadius: 12, padding: 32, minHeight: 400 }}>
-          {/* 结果展示区 */}
+      {/* 核心内容区：结果展示 + 辅助功能 */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        {/* 生成结果展示区（占比约60%） */}
+        <div style={{ 
+          padding: 24, 
+          background: '#fafafa', 
+          borderRadius: 8, 
+          minHeight: 300,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
           <ResultDisplay 
             imageUrl={generatedImage} 
             onRegenerate={() => handleOpenModal(currentPrompt)} 
           />
         </div>
 
-        {/* 底部辅助区 */}
-        <div style={{ marginTop: 24 }}>
-          {/* 公共模板库 */}
+        {/* 底部辅助区：模板库 + 提示技巧 */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <TemplateGallery onSelectTemplate={handleOpenModal} />
-          
-          {/* 提示词技巧 */}
-          <PromptTips style={{ marginTop: 24 }} />
+          <PromptTips />
         </div>
-      </Content>
+      </div>
 
-      {/* 生成对话框 */}
+      {/* 生成对话框（浮层） */}
       <ImageGenerator 
         open={isModalOpen} 
         onClose={() => setIsModalOpen(false)}
         initialPrompt={currentPrompt}
-        onImageGenerated={handleImageGenerated}
         onPromptChange={setCurrentPrompt}
+        onImageGenerated={handleImageGenerated}
       />
-    </Layout>
+    </div>
   );
 }
